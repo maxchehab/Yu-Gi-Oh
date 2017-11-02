@@ -1,5 +1,5 @@
 # 🎴 Yu Gi Oh! 🎴
-Terminal adaptation of the Yu Gi Oh.
+Terminal adaptation of Yu Gi Oh.
 
 ## ⚡ Before you get going ⚡
 Make sure you have installed g++ and make.

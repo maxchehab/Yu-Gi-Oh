@@ -1,74 +1,76 @@
+#include "monster.h"
+
 #ifndef QUEUE_H
 #define QUEUE_H
 
 class Queue{
     private:
-        int *queueArray;
+        Monster *queueArray;
         int queueSize;
         int front;
         int rear;
-        int numItems;
     public:
         //Constructor
         Queue(int);
 
         //Destructor
         ~Queue();
-
+        int length;
+        
         //Queue operations
-        void enqueue(int);
-        void dequeue(int&);
+        void enqueue(Monster);
+        void dequeue(Monster&);
         bool isEmpty() const;
         bool isFull() const;
         void clear();
 };
 
 Queue::Queue(int size){
-    queueArray = new int[size];
+    queueArray = new Monster[size];
     queueSize = size;
     front = -1;
     rear = -1;
-    numItems = 0;
+    length = 0;
 }
 
 Queue::~Queue(){
     delete []queueArray;
 }
 
-void Queue::enqueue(int num){
+void Queue::enqueue(Monster monster){
     if(!isFull()){
         //Calculate the new rear position
         rear = (rear + 1) % queueSize;
         //Insert new item
-        queueArray[rear] = num;
+        queueArray[rear] = monster;
         //Update item count
-        numItems++;
+        length++;
     }
 }
 
-void Queue::dequeue(int &num){
+void Queue::dequeue(Monster &monster){
     if(!isEmpty()){
         //Move the front
         front = (front + 1) % queueSize;
         //Retrieve the front item
-        num = queueArray[front];
+        monster = queueArray[front];
         //Update item count
-        numItems--;
+        length--;
     }
 }
 
 bool Queue::isEmpty() const{
-    return !numItems;
+    return !length;
 }
 
 bool Queue::isFull() const{
-    return (numItems >= queueSize);
+    return (length >= queueSize);
 }
 
 void Queue::clear(){
     front = queueSize - 1;
     rear = queueSize - 1;
-    numItems = 0;
+    length = 0;
 }
 
 #endif

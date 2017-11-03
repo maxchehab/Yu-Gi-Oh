@@ -1,4 +1,6 @@
 // Specification file for the DynIntStack class
+#include "monster.h"
+
 #ifndef STACK_H
 #define STACK_H
 
@@ -6,7 +8,7 @@ class Stack {
 	private:
 	    // Structure for stack nodes 
 		struct StackNode{
-		    int value; // Value in the node
+		    Monster monster; // Value in the node
 		    StackNode *next; // Pointer to the next node 
 		};
 		StackNode *top;
@@ -18,8 +20,8 @@ class Stack {
 	    // Destructor 
 		~Stack();
 	    // Stack operations 
-		void push(int); 
-		void pop(int &); 
+		void push(Monster); 
+		void pop(Monster &); 
 		bool isEmpty();
 };
 
@@ -45,12 +47,12 @@ Stack::~Stack(){
  * Member function push pushes the argument onto 
  * the stack. 
  **************************************************/
-void Stack::push(int num){
+void Stack::push(Monster monster){
 	StackNode *newNode = nullptr; // Pointer to a new node
 
-	// Allocate a new node and store num there.
+	// Allocate a new node and store monster there.
 	newNode = new StackNode;
-	newNode->value = num;
+	newNode->monster = monster;
 	 // If there are no nodes in the list
 	 // make newNode the first node.
 	if (isEmpty()){
@@ -68,11 +70,11 @@ void Stack::push(int num){
  * passed as an argument. *
  *****************************************************/
 
-void Stack::pop(int &num){
+void Stack::pop(Monster &monster){
 	StackNode *temp = nullptr; // Temporary pointer
 	// First make sure the stack isn't empty. 
 	if (!isEmpty()){
-		num = top->value;
+		monster = top->monster;
 		temp = top->next; delete top;
 		top = temp; 
 	}

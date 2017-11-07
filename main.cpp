@@ -2,19 +2,20 @@
 #include <string>
 
 #include "./lib/game.h"
+#include "./lib/list.h"
 #include "./lib/stack.h"
 #include "./lib/queue.h"
 #include "./lib/monster.h"
-#include "./lib/player.h"
+//#include "./lib/player.h"
 
 using namespace std;
 
 int main(){
     new Game();
-
+    
     return 0;
 }
-
+/*
 void test(){
     const int MAX_VALUES = 6;
     
@@ -55,4 +56,4 @@ void test(){
     monster.print();
     monster.kill();
     monster.print();
-}
+}*/

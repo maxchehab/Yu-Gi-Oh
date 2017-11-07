@@ -1,6 +1,7 @@
 // Specification file for the DynIntStack class
 #include "monster.h"
 #include "queue.h"
+#include "list.h"
 
 #include <string>
 
@@ -13,7 +14,7 @@ class Player {
     public:
         int health;
         string name;
-        Monster hand[5];
+        List hand;
         int handLength = 0;
         Queue* attackQueue;
         Queue* defenseQueue;
@@ -30,7 +31,6 @@ class Player {
 Player::Player(string _name){
     name = _name; 
     health = 8000;
-    hand = new Monster[5];
     attackQueue = (new Queue(10));
     defenseQueue = (new Queue(10));
 }
@@ -38,7 +38,6 @@ Player::Player(string _name){
 Player::Player(string _name, int _health, int handSize, int queueSize){
     name = _name;
     health = _health;
-    hand = new Monster[handSize];
     attackQueue = (new Queue(queueSize));
     defenseQueue = (new Queue(queueSize));
 }
@@ -56,10 +55,17 @@ void Player::print(){
     cout << "Health: " << health << endl;
 }
 
-void addCard(Monster monster){
+void Player::addCard(Monster monster){
     if(handLength < 5){
-        hand[handLength] = monster;
+        hand.add(monster);
         handLength++;
     }
+}
+
+Monster Player::removeCard(int index){
+    Monster monster;
+    monster = hand.remove(index);
+    handLength--;
+    return monster;
 }
 #endif
